@@ -53,6 +53,9 @@ json
 
 ```
 
+`code`
+
+`
 Standard Response Format
 
 Delivery Reports
@@ -67,10 +70,15 @@ Below is a description of each delivery report
 | SenderName Blacklisted | The customer has explicitly blocked messages from the sender id. or opted out of receiving promotional messages                                                                                                                                                                      |
 | Invalid Source Address | The sender ID does not exist on the telco                                                                                                                                                                                                                                            |
 
-|Send Bulk Sms|
+# Authentication
+
+This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints
+
+# Send Bulk Sms|
+
 Send Bulk Promotional or/and Transaction messages|
 
-# Authentication
+#### Send a single message to one or multiple recipients ** Acquire API KEY FROM DASHBOARD **
 
 | Parameter     | Description                    |     |
 | ------------- | ------------------------------ | --- |
@@ -82,12 +90,13 @@ Send Bulk Promotional or/and Transaction messages|
 
 # Send Bulk
 
-POST Send SMS
-`https://bulkdev.swifttdial.com:2778/api/outbox/create \ `
+### POST
 
-##Send a single message to one or multiple recipients. You can send up to 200 recipients in a single request. This endpoint can send both on demand and bulk messages.
+Send SMS
 
-###Requests
+`POST` `https://bulkdev.swifttdial.com:2778/api/outbox/create \ `
+
+Send a single message to one or multiple recipients. You can send up to 200 recipients in a single request. This endpoint can send both on demand and bulk messages.
 
 | Parameter           | Description                               |
 | ------------------- | ----------------------------------------- |
@@ -98,7 +107,53 @@ POST Send SMS
 | Messages            | Arry of objects(Messages)[ 1 .. 20] items |
 | dlr_callback_url    | dlr Callback Url                          |
 
-###Responses
+###Requests
+
+<details>
+  <summary><b><u>Responses ` 200 ok</u></b></summary>
+
+###Responses ` 200 ok`
+
+| Parameter    | Description        |
+| ------------ | ------------------ |
+| external_id: | Message Id.        |
+| message_ref  | Message Reference. |
+| recipient:   | Mobile Number.     |
+| sms_count    | Sms Count.         |
+
+</details>
+
+<details>
+
+<summary>Intro:</summary>
+
+#### Sub intro
+
+[
+{
+"external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh",
+"recipient": "254780011971",
+"sms_count": 1
+}
+]
+
+</details>
+
+`422 unprocesable Entity`
+
+| Parameter      | Description  |
+| -------------- | ------------ |
+| code (string): | error code   |
+| description    | Description. |
+| detail:        | Detail.      |
+
+`500 Internal Server Error`
+
+| Parameter      | Description  |
+| -------------- | ------------ |
+| code (string): | error code   |
+| description    | Description. |
+| detail:        | Detail.      |
 
 ```shell
 curl --request POST \
@@ -187,3 +242,25 @@ curl --request POST \
 
 }'
 ```
+
+# My Title
+
+    ## My Subtitle
+
+    ```csharp
+        Code snippet
+    ```
+
+    ```java
+        Code snippet
+    ```
+
+    ```php
+    <?php
+        Code snippet
+    ?>
+    ```
+
+    ```ruby
+    #Code snippet
+    ```
