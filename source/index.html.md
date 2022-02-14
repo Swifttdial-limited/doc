@@ -142,10 +142,11 @@ Send a single message to one or multiple recipients. You can send up to 200 reci
 
 <!-- ###Requests -->
 
-##Responses ` 200 ok`
+##Responses
+` 200 ok`
 
 ```shell
-{
+200 ok {
 "external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh",
 "recipient": "254780011971",
 "sms_count": 1
@@ -290,7 +291,7 @@ curl --request POST \
 
 # Subscription Messages
 
-### `https://sms.api.swifttdial.com:2778/api/outbox`
+`https://sms.api.swifttdial.com:2778/api/outbox`
 
 | Parameter        | Description                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------- |
@@ -311,12 +312,13 @@ Send a single message to one or multiple recipients
 | AUTHORIZATIONS:     | X-api-key        |
 | REQUEST BODY SCHEMA | application/json |
 
-header 'X-API-Key: your-x-api' \
- header 'Content-Type: application/json' \
+`header 'X-API-Key: your-x-api' \`
+
+`header 'Content-Type: application/json' \`
 
 ```json
 
-body
+request Body
 {
     "to": ["25472xxxxxxx"],
     "message": "Your Message",
@@ -328,7 +330,9 @@ body
 }
 ```
 
-```shell
+````shell
+sample code
+
 curl --request POST \
   --url https://sms.api.swifttdial.com:2778/api/outbox \
   --header 'Content-Type: application/json' \
@@ -341,5 +345,5 @@ curl --request POST \
     "service": "23599_News_5/sms",
     "callback": "http://example.com/callback"
 
-}'
-```
+}```
+````
