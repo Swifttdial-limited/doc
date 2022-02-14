@@ -76,7 +76,7 @@ Send Bulk Promotional or/and Transaction messages|
 | ------------- | ------------------------------ | --- |
 | AUTHORIZATION | x-api-key                      |
 | HEADERS       | Content-Type: application/json |
-| data          | profile_code :123              |
+| data          | profile_code :12356            |
 
 ```shell
 https://sms.api.swifttdial.com:2778
@@ -95,9 +95,9 @@ Request body
 {"profile_code": "12345",
 	"messages": [
 		{
-			"recipient": "254780011971",
+			"recipient": "25472xxxxxxx",
 			"message": " HI this is a Test",
-			"message_type":2,
+			"message_type":1,
 			"req_type": 1,
 			"external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"
 		}
@@ -109,71 +109,8 @@ Request body
 
 `POST` `https://sms.api.swifttdial.com:2778/api/outbox/create \ `
 
-Send a single message to one or multiple recipients. You can send up to 200 recipients in a single request. This endpoint can send both on demand and bulk messages.
-
-| Parameter           | Description                               |
-| ------------------- | ----------------------------------------- |
-| AUTHORIZATIONS:     | X-api-key                                 |
-| REQUEST BODY SCHEMA | application/json                          |
-| REQUEST BODY:       |
-| profile_code        | linked to sms product configuration       |
-| Messages            | Arry of objects(Messages)[ 1 .. 20] items |
-| dlr_callback_url    | dlr Callback Url                          |
-
-###Requests
-
-<!-- <details>
-  <summary><b><u>Responses ` 200 ok</u></b></summary> -->
-
 ```shell
-{
-"external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh",
-"recipient": "254780011971",
-"sms_count": 1
-}
-```
-
-###Responses ` 200 ok`
-
-| Parameter    | Description        |
-| ------------ | ------------------ |
-| external_id: | Message Id.        |
-| message_ref  | Message Reference. |
-| recipient:   | Mobile Number.     |
-| sms_count    | Sms Count.         |
-
-<!-- </details> -->
-
-<!-- <details>
-<summary>Intro:</summary>
-
-</details> -->
-
-```shell
-{
-  "detail": "Invalid Profile Code"
-}
-```
-
-`422 unprocesable Entity`
-
-| Parameter      | Description |
-| -------------- | ----------- |
-| code (string): | Description |
-
-```shell
-{
-  "detail": "500 server-error",
-}
-```
-
-`500 Internal Server Error`
-
-| Parameter      | Description |
-| -------------- | ----------- |
-| code (string): | description |
-
-```shell
+sample codes
 curl --request POST \
   --url https://sms.api.swifttdial.com:2778/api/outbox/create \
   --header 'Content-Type: application/json' \
@@ -191,6 +128,89 @@ curl --request POST \
 	"dlr_callback_url": "http://example.com"
 }
 ```
+
+Send a single message to one or multiple recipients. You can send up to 200 recipients in a single request. This endpoint can send both on demand and bulk messages.
+
+| Parameter           | Description                               |
+| ------------------- | ----------------------------------------- |
+| AUTHORIZATIONS:     | X-api-key                                 |
+| REQUEST BODY SCHEMA | application/json                          |
+| REQUEST BODY:       |
+| profile_code        | linked to sms product configuration       |
+| Messages            | Arry of objects(Messages)[ 1 .. 20] items |
+| dlr_callback_url    | dlr Callback Url                          |
+
+<!-- ###Requests -->
+
+##Responses ` 200 ok`
+
+```shell
+{
+"external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh",
+"recipient": "254780011971",
+"sms_count": 1
+}
+```
+
+| Parameter    | Description        |
+| ------------ | ------------------ |
+| external_id: | Message Id.        |
+| message_ref  | Message Reference. |
+| recipient:   | Mobile Number.     |
+| sms_count    | Sms Count.         |
+
+```shell
+401 Unauthorized
+{
+"code": "description",
+}
+```
+
+`401 Unauthorized`
+
+| Parameter      | Description |
+| -------------- | ----------- |
+| code (string): | Description |
+
+```shell
+403 Forbidden
+{
+
+"code": "details",
+}
+```
+
+`403 Forbidden`
+
+| Parameter      | Description |
+| -------------- | ----------- |
+| code (string): | Description |
+
+```shell
+422 unprocesable Entity
+{
+  "detail": "Invalid Profile Code"
+}
+```
+
+`422 unprocesable Entity`
+
+| Parameter      | Description |
+| -------------- | ----------- |
+| code (string): | Description |
+
+```shell
+500 Internal Server Error
+{
+  "detail": "500 server-error",
+}
+```
+
+`500 Internal Server Error`
+
+| Parameter      | Description |
+| -------------- | ----------- |
+| code (string): | description |
 
 ## GET DLR
 
@@ -226,10 +246,9 @@ Web hook post
 
 ### `POST https://sms.api.swifttdial.com:2778/api/outbox`
 
-```shell
-Headers Body
-Content-Type: application/json
-```
+`Headers Body`
+
+`Content-Type: application/json`
 
 ```shell
 request Body
@@ -282,6 +301,9 @@ curl --request POST \
 | message_id       | A unique reference number that will be sent back to you on the provided delivery endpoint    |
 | dlr_callback_url | The Url that we will send you a delivery report once the message is terminated to the device |
 
+## MT/MO Messages
+
+Send a single message to one or multiple recipients
 ###Requests
 
 | Parameter           | Description      |
