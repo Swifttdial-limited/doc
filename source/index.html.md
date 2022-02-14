@@ -1,15 +1,15 @@
 ---
-title: API Reference
+title: SwifttDial API DOcs
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+# language_tabs: # must be one of https://git.io/vQNgJ
+#   - shell
+#   - ruby
+#   - python
+#   - javascript
 
 toc_footers:
-  # - <a href='#'>Sign Up for a Developer Key</a>
-  # - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='sms.swifttdial.com'>Login</a>
+  # >
 
 includes:
   - errors
@@ -17,19 +17,19 @@ includes:
 search: true
 
 code_clipboard: true
-server: https://bulkdev.swifttdial.com:2778
+server: https://sms.api.swifttdial.com:2778
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: SwifttDial Bulk sms API Docs
 ---
 
-# swifttdial SMS API Docs
+# Usage Overview
+
+swifttdial SMS API Docs
 
 Customer Support:
 tech@swifttdial.com
 URL: https://swifttdial.com/contact-us/
-
-## Usage Overview
 
 Here are some information that should help you understand the basic usage of our Restful API.
 
@@ -48,14 +48,6 @@ Certain API calls require you to send data in a particular format as part of the
 
 Unless otherwise specified, all of API endpoints will return the information that you request in the JSON data format.
 
-```
-json
-
-```
-
-`code`
-
-`
 Standard Response Format
 
 Delivery Reports
@@ -70,11 +62,11 @@ Below is a description of each delivery report
 | SenderName Blacklisted | The customer has explicitly blocked messages from the sender id. or opted out of receiving promotional messages                                                                                                                                                                      |
 | Invalid Source Address | The sender ID does not exist on the telco                                                                                                                                                                                                                                            |
 
-# Authentication
+## Authentication
 
 This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints
 
-# Send Bulk Sms|
+### Send Bulk Sms|
 
 Send Bulk Promotional or/and Transaction messages|
 
@@ -86,15 +78,36 @@ Send Bulk Promotional or/and Transaction messages|
 | HEADERS       | Content-Type: application/json |
 | data          | profile_code :123              |
 
-> https://bulkdev.swifttdial.com:2778
+```shell
+https://sms.api.swifttdial.com:2778
+header 'Content-Type: application/json' \
+header 'X-API-Key: your-api-key you generate from the dashboard' \
+```
 
 # Send Bulk
 
-### POST
+## POST
 
 Send SMS
 
-`POST` `https://bulkdev.swifttdial.com:2778/api/outbox/create \ `
+```shell
+Request body
+{"profile_code": "12345",
+	"messages": [
+		{
+			"recipient": "254780011971",
+			"message": " HI this is a Test",
+			"message_type":2,
+			"req_type": 1,
+			"external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"
+		}
+	],
+	"dlr_callback_url": "http://example.com"
+}
+
+```
+
+`POST` `https://sms.api.swifttdial.com:2778/api/outbox/create \ `
 
 Send a single message to one or multiple recipients. You can send up to 200 recipients in a single request. This endpoint can send both on demand and bulk messages.
 
@@ -109,8 +122,16 @@ Send a single message to one or multiple recipients. You can send up to 200 reci
 
 ###Requests
 
-<details>
-  <summary><b><u>Responses ` 200 ok</u></b></summary>
+<!-- <details>
+  <summary><b><u>Responses ` 200 ok</u></b></summary> -->
+
+```shell
+{
+"external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh",
+"recipient": "254780011971",
+"sms_count": 1
+}
+```
 
 ###Responses ` 200 ok`
 
@@ -121,43 +142,40 @@ Send a single message to one or multiple recipients. You can send up to 200 reci
 | recipient:   | Mobile Number.     |
 | sms_count    | Sms Count.         |
 
-</details>
+<!-- </details> -->
 
-<details>
-
+<!-- <details>
 <summary>Intro:</summary>
 
-#### Sub intro
+</details> -->
 
-[
+```shell
 {
-"external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh",
-"recipient": "254780011971",
-"sms_count": 1
+  "detail": "Invalid Profile Code"
 }
-]
-
-</details>
+```
 
 `422 unprocesable Entity`
 
-| Parameter      | Description  |
-| -------------- | ------------ |
-| code (string): | error code   |
-| description    | Description. |
-| detail:        | Detail.      |
+| Parameter      | Description |
+| -------------- | ----------- |
+| code (string): | Description |
+
+```shell
+{
+  "detail": "500 server-error",
+}
+```
 
 `500 Internal Server Error`
 
-| Parameter      | Description  |
-| -------------- | ------------ |
-| code (string): | error code   |
-| description    | Description. |
-| detail:        | Detail.      |
+| Parameter      | Description |
+| -------------- | ----------- |
+| code (string): | description |
 
 ```shell
 curl --request POST \
-  --url https://bulkdev.swifttdial.com:2778/api/outbox/create \
+  --url https://sms.api.swifttdial.com:2778/api/outbox/create \
   --header 'Content-Type: application/json' \
   --header 'X-API-Key: meowmeowmeow' \
   --data '{"profile_code": "12345",
@@ -174,25 +192,86 @@ curl --request POST \
 }
 ```
 
-# Message Status
+## GET DLR
 
-`https://bulkdev.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \`
+GET MESSAGE DELIVERY
+
+`GET https://sms.api.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \`
 
 Check the delivery status of a single/Bulk messages
 
-| Parameter       | Description |
-| --------------- | ----------- |
-| AUTHORIZATIONS: | X-api-key   |
+```shell
+curl --request GET \
+ --url https://sms.api.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \
+ --header 'X-API-Key: your-api-key'
+```
+
+| Parameter       | Description                                              |
+| --------------- | -------------------------------------------------------- |
+| AUTHORIZATIONS: | X-api-key                                                |
+| message_ref     | This is the externalId generated when sending api outbox |
+
+`Response 422 Unprocessable Entity`
+
+```shell
+ Body{
+"detail": "Error Message"
+}
 
 ```
-curl --request GET \
- --url https://bulkdev.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \
- --header 'X-API-Key: your-api-key'
+
+## POST DLR Request
+
+Web hook post
+
+### `POST https://sms.api.swifttdial.com:2778/api/outbox`
+
+```shell
+Headers Body
+Content-Type: application/json
+```
+
+```shell
+request Body
+{
+    "uid": "45$045ea8b3abf540aa89cac71985b3a278",
+    "actor_type": "system",
+    "event_type": "sms_delivery_status",
+    "created_at": "1594868435",
+    "data": {
+        "external_id": "abf540aa89cac71985b3a278",
+        "message_ref": "76387871a0bd4f44afcbf3af8fb53054",
+        "status": "delivered",
+        "status_reason": "delivered_to_terminal",
+        "status_description": "Message Delivered to terminal"
+    }
+}
+```
+
+```shell
+code sample
+curl --request POST \
+  --url https://sms.api.swifttdial.com:2779/api/outbox/create \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+  "uid": "45$045ea8b3abf540aa89cac71985b3a278",
+  "actor_type": "system",
+  "event_type": "sms_delivery_status",
+  "created_at": "1594868435",
+  "data": {
+    "external_id": "abf540aa89cac71985b3a278",
+    "message_ref": "76387871a0bd4f44afcbf3af8fb53054",
+    "status": "delivered",
+    "status_reason": "delivered_to_terminal",
+    "status_description": "Message Delivered to client Mobile"
+  }
+}' \
+
 ```
 
 # Subscription Messages
 
-### `https://bulkdev.swifttdial.com:2778/api/outbox`
+### `https://sms.api.swifttdial.com:2778/api/outbox`
 
 | Parameter        | Description                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------- |
@@ -229,7 +308,7 @@ body
 
 ```shell
 curl --request POST \
-  --url https://bulkdev.swifttdial.com:2778/api/outbox \
+  --url https://sms.api.swifttdial.com:2778/api/outbox \
   --header 'Content-Type: application/json' \
   --header 'X-API-Key: your-x-api' \
   --data '{
@@ -242,25 +321,3 @@ curl --request POST \
 
 }'
 ```
-
-# My Title
-
-    ## My Subtitle
-
-    ```csharp
-        Code snippet
-    ```
-
-    ```java
-        Code snippet
-    ```
-
-    ```php
-    <?php
-        Code snippet
-    ?>
-    ```
-
-    ```ruby
-    #Code snippet
-    ```
