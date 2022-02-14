@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the Kittn API"
+            content="SwifttDial Bulk sms API Docs"
         >
-    <title>API Reference</title>
+    <title>SwifttDial API DOcs</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -304,36 +304,24 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo-78499ac4.png" class="logo" alt="" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#swifttdial-sms-api-docs" class="toc-h1 toc-link" data-title="swifttdial SMS API Docs">swifttdial SMS API Docs</a>
+            <a href="#usage-overview" class="toc-h1 toc-link" data-title="Usage Overview">Usage Overview</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#usage-overview" class="toc-h2 toc-link" data-title="Usage Overview">Usage Overview</a>
-                  </li>
                   <li>
                     <a href="#headers" class="toc-h2 toc-link" data-title="Headers">Headers</a>
                   </li>
                   <li>
                     <a href="#responses" class="toc-h2 toc-link" data-title="Responses">Responses</a>
                   </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
               </ul>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#send-bulk-sms" class="toc-h1 toc-link" data-title="Send Bulk Sms|">Send Bulk Sms|</a>
           </li>
           <li>
             <a href="#send-bulk" class="toc-h1 toc-link" data-title="Send Bulk">Send Bulk</a>
@@ -342,18 +330,18 @@
                     <a href="#post" class="toc-h2 toc-link" data-title="POST">POST</a>
                   </li>
                   <li>
-                    <a href="#requests" class="toc-h2 toc-link" data-title="Requests">Requests</a>
+                    <a href="#get-dlr" class="toc-h2 toc-link" data-title="GET DLR">GET DLR</a>
+                  </li>
+                  <li>
+                    <a href="#post-dlr-request" class="toc-h2 toc-link" data-title="POST DLR Request">POST DLR Request</a>
                   </li>
               </ul>
-          </li>
-          <li>
-            <a href="#message-status" class="toc-h1 toc-link" data-title="Message Status">Message Status</a>
           </li>
           <li>
             <a href="#subscription-messages" class="toc-h1 toc-link" data-title="Subscription Messages">Subscription Messages</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#https-bulkdev-swifttdial-com-2778-api-outbox" class="toc-h2 toc-link" data-title="https://bulkdev.swifttdial.com:2778/api/outbox"><code>https://bulkdev.swifttdial.com:2778/api/outbox</code></a>
+                    <a href="#https-sms-api-swifttdial-com-2778-api-outbox" class="toc-h2 toc-link" data-title="https://sms.api.swifttdial.com:2778/api/outbox"><code>https://sms.api.swifttdial.com:2778/api/outbox</code></a>
                   </li>
                   <li>
                     <a href="#requests-2" class="toc-h2 toc-link" data-title="Requests">Requests</a>
@@ -361,21 +349,23 @@
               </ul>
           </li>
           <li>
-            <a href="#my-title" class="toc-h1 toc-link" data-title="My Title">My Title</a>
-          </li>
-          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
+        <ul class="toc-footer">
+            <li><a href='sms.swifttdial.com'>Login</a></li>
+        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='swifttdial-sms-api-docs'>swifttdial SMS API Docs</h1>
+        <h1 id='usage-overview'>Usage Overview</h1>
+<p>swifttdial SMS API Docs</p>
+
 <p>Customer Support:
 tech@swifttdial.com
 URL: https://swifttdial.com/contact-us/</p>
-<h2 id='usage-overview'>Usage Overview</h2>
+
 <p>Here are some information that should help you understand the basic usage of our Restful API.</p>
 
 <p>Including info about authenticating users, making requests, responses, potential errors, query parameters and more.</p>
@@ -402,13 +392,8 @@ URL: https://swifttdial.com/contact-us/</p>
 </tbody></table>
 <h2 id='responses'>Responses</h2>
 <p>Unless otherwise specified, all of API endpoints will return the information that you request in the JSON data format.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>json
 
-</code></pre></div>
-<p><code>code</code></p>
-
-<p>`
-Standard Response Format</p>
+<p>Standard Response Format</p>
 
 <p>Delivery Reports
 Below is a description of each delivery report</p>
@@ -451,9 +436,9 @@ Below is a description of each delivery report</p>
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='authentication'>Authentication</h1>
+<h2 id='authentication'>Authentication</h2>
 <p>This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints</p>
-<h1 id='send-bulk-sms'>Send Bulk Sms|</h1>
+<h3 id='send-bulk-sms'>Send Bulk Sms|</h3>
 <p>Send Bulk Promotional or/and Transaction messages|</p>
 <h4 id='send-a-single-message-to-one-or-multiple-recipients-acquire-api-key-from-dashboard'>Send a single message to one or multiple recipients ** Acquire API KEY FROM DASHBOARD **</h4>
 <table><thead>
@@ -479,14 +464,27 @@ Below is a description of each delivery report</p>
 <td></td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>https://bulkdev.swifttdial.com:2778</p>
-</blockquote>
-<h1 id='send-bulk'>Send Bulk</h1><h3 id='post'>POST</h3>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>https://sms.api.swifttdial.com:2778
+header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard'</span> <span class="se">\</span>
+</code></pre></div><h1 id='send-bulk'>Send Bulk</h1><h2 id='post'>POST</h2>
 <p>Send SMS</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>Request body
+<span class="o">{</span><span class="s2">"profile_code"</span>: <span class="s2">"12345"</span>,
+    <span class="s2">"messages"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"recipient"</span>: <span class="s2">"254780011971"</span>,
+            <span class="s2">"message"</span>: <span class="s2">" HI this is a Test"</span>,
+            <span class="s2">"message_type"</span>:2,
+            <span class="s2">"req_type"</span>: 1,
+            <span class="s2">"external_id"</span>: <span class="s2">"tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"dlr_callback_url"</span>: <span class="s2">"http://example.com"</span>
+<span class="o">}</span>
 
-<p><code>POST</code> <code>https://bulkdev.swifttdial.com:2778/api/outbox/create \</code></p>
+</code></pre></div>
+<p><code>POST</code> <code>https://sms.api.swifttdial.com:2778/api/outbox/create \</code></p>
 
 <p>Send a single message to one or multiple recipients. You can send up to 200 recipients in a single request. This endpoint can send both on demand and bulk messages.</p>
 
@@ -522,36 +520,48 @@ Below is a description of each delivery report</p>
 </tr>
 </tbody></table>
 <h3 id='requests'>Requests</h3>
-<details>
-  <summary><b><u>Responses ` 200 ok</u></b></summary>
+<!-- <details>
+  <summary><b><u>Responses ` 200 ok</u></b></summary> -->
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+<span class="s2">"external_id"</span>: <span class="s2">"tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"</span>,
+<span class="s2">"recipient"</span>: <span class="s2">"254780011971"</span>,
+<span class="s2">"sms_count"</span>: 1
+<span class="o">}</span>
+</code></pre></div><h3 id='responses-200-ok'>Responses <code>200 ok</code></h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>external_id:</td>
+<td>Message Id.</td>
+</tr>
+<tr>
+<td>message_ref</td>
+<td>Message Reference.</td>
+</tr>
+<tr>
+<td>recipient:</td>
+<td>Mobile Number.</td>
+</tr>
+<tr>
+<td>sms_count</td>
+<td>Sms Count.</td>
+</tr>
+</tbody></table>
 
-###Responses ` 200 ok`
+<!-- </details> -->
 
-| Parameter    | Description        |
-| ------------ | ------------------ |
-| external_id: | Message Id.        |
-| message_ref  | Message Reference. |
-| recipient:   | Mobile Number.     |
-| sms_count    | Sms Count.         |
-
-</details>
-
-<details>
-
+<!-- <details>
 <summary>Intro:</summary>
 
-#### Sub intro
-
-[
-{
-"external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh",
-"recipient": "254780011971",
-"sms_count": 1
-}
-]
-
-</details>
-
+</details> -->
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+  <span class="s2">"detail"</span>: <span class="s2">"Invalid Profile Code"</span>
+<span class="o">}</span>
+</code></pre></div>
 <p><code>422 unprocesable Entity</code></p>
 
 <table><thead>
@@ -562,18 +572,13 @@ Below is a description of each delivery report</p>
 </thead><tbody>
 <tr>
 <td>code (string):</td>
-<td>error code</td>
-</tr>
-<tr>
-<td>description</td>
-<td>Description.</td>
-</tr>
-<tr>
-<td>detail:</td>
-<td>Detail.</td>
+<td>Description</td>
 </tr>
 </tbody></table>
-
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+  <span class="s2">"detail"</span>: <span class="s2">"500 server-error"</span>,
+<span class="o">}</span>
+</code></pre></div>
 <p><code>500 Internal Server Error</code></p>
 
 <table><thead>
@@ -584,19 +589,11 @@ Below is a description of each delivery report</p>
 </thead><tbody>
 <tr>
 <td>code (string):</td>
-<td>error code</td>
-</tr>
-<tr>
 <td>description</td>
-<td>Description.</td>
-</tr>
-<tr>
-<td>detail:</td>
-<td>Detail.</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://bulkdev.swifttdial.com:2778/api/outbox/create <span class="se">\</span>
+  <span class="nt">--url</span> https://sms.api.swifttdial.com:2778/api/outbox/create <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'X-API-Key: meowmeowmeow'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{"profile_code": "12345",
@@ -611,11 +608,16 @@ Below is a description of each delivery report</p>
     ],
     "dlr_callback_url": "http://example.com"
 }
-</span></code></pre></div><h1 id='message-status'>Message Status</h1>
-<p><code>https://bulkdev.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \</code></p>
+</span></code></pre></div><h2 id='get-dlr'>GET DLR</h2>
+<p>GET MESSAGE DELIVERY</p>
+
+<p><code>GET https://sms.api.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \</code></p>
 
 <p>Check the delivery status of a single/Bulk messages</p>
-
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
+ <span class="nt">--url</span> https://sms.api.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ <span class="se">\</span>
+ <span class="nt">--header</span> <span class="s1">'X-API-Key: your-api-key'</span>
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -626,11 +628,54 @@ Below is a description of each delivery report</p>
 <td>AUTHORIZATIONS:</td>
 <td>X-api-key</td>
 </tr>
+<tr>
+<td>message_ref</td>
+<td>This is the externalId generated when sending api outbox</td>
+</tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>curl --request GET \
- --url https://bulkdev.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \
- --header 'X-API-Key: your-api-key'
-</code></pre></div><h1 id='subscription-messages'>Subscription Messages</h1><h3 id='https-bulkdev-swifttdial-com-2778-api-outbox'><code>https://bulkdev.swifttdial.com:2778/api/outbox</code></h3>
+
+<p><code>Response 422 Unprocessable Entity</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code> Body<span class="o">{</span>
+<span class="s2">"detail"</span>: <span class="s2">"Error Message"</span>
+<span class="o">}</span>
+
+</code></pre></div><h2 id='post-dlr-request'>POST DLR Request</h2>
+<p>Web hook post</p>
+<h3 id='post-https-sms-api-swifttdial-com-2778-api-outbox'><code>POST https://sms.api.swifttdial.com:2778/api/outbox</code></h3><div class="highlight"><pre class="highlight shell tab-shell"><code>Headers Body
+Content-Type: application/json
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>request Body
+<span class="o">{</span>
+    <span class="s2">"uid"</span>: <span class="s2">"45</span><span class="nv">$045ea8b3abf540aa89cac71985b3a278</span><span class="s2">"</span>,
+    <span class="s2">"actor_type"</span>: <span class="s2">"system"</span>,
+    <span class="s2">"event_type"</span>: <span class="s2">"sms_delivery_status"</span>,
+    <span class="s2">"created_at"</span>: <span class="s2">"1594868435"</span>,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+        <span class="s2">"external_id"</span>: <span class="s2">"abf540aa89cac71985b3a278"</span>,
+        <span class="s2">"message_ref"</span>: <span class="s2">"76387871a0bd4f44afcbf3af8fb53054"</span>,
+        <span class="s2">"status"</span>: <span class="s2">"delivered"</span>,
+        <span class="s2">"status_reason"</span>: <span class="s2">"delivered_to_terminal"</span>,
+        <span class="s2">"status_description"</span>: <span class="s2">"Message Delivered to terminal"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>code sample
+curl <span class="nt">--request</span> POST <span class="se">\</span>
+  <span class="nt">--url</span> https://sms.api.swifttdial.com:2779/api/outbox/create <span class="se">\</span>
+     <span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     <span class="nt">--data-binary</span> <span class="s1">'{
+  "uid": "45$045ea8b3abf540aa89cac71985b3a278",
+  "actor_type": "system",
+  "event_type": "sms_delivery_status",
+  "created_at": "1594868435",
+  "data": {
+    "external_id": "abf540aa89cac71985b3a278",
+    "message_ref": "76387871a0bd4f44afcbf3af8fb53054",
+    "status": "delivered",
+    "status_reason": "delivered_to_terminal",
+    "status_description": "Message Delivered to client Mobile"
+  }
+}'</span> <span class="se">\</span>
+
+</code></pre></div><h1 id='subscription-messages'>Subscription Messages</h1><h3 id='https-sms-api-swifttdial-com-2778-api-outbox'><code>https://sms.api.swifttdial.com:2778/api/outbox</code></h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -693,7 +738,7 @@ Below is a description of each delivery report</p>
 
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://bulkdev.swifttdial.com:2778/api/outbox <span class="se">\</span>
+  <span class="nt">--url</span> https://sms.api.swifttdial.com:2778/api/outbox <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'X-API-Key: your-x-api'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
@@ -705,27 +750,7 @@ Below is a description of each delivery report</p>
     "callback": "http://example.com/callback"
 
 }'</span>
-</code></pre></div><h1 id='my-title'>My Title</h1>
-<p>## My Subtitle</p>
-
-<p><code>csharp
-        Code snippet
-</code></p>
-
-<p><code>java
-        Code snippet
-</code></p>
-
-<p><code>php
-    &lt;?php
-        Code snippet
-    ?&gt;
-</code></p>
-
-<p><code>ruby
-    #Code snippet
-</code></p>
-<h1 id='errors'>Errors</h1>
+</code></pre></div><h1 id='errors'>Errors</h1>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -780,12 +805,6 @@ Below is a description of each delivery report</p>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
-          </div>
       </div>
     </div>
   </body>
