@@ -8,8 +8,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  # - <a href='#'>Sign Up for a Developer Key</a>
+  # - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -17,229 +17,173 @@ includes:
 search: true
 
 code_clipboard: true
-
+server: https://bulkdev.swifttdial.com:2778
 meta:
   - name: description
     content: Documentation for the Kittn API
 ---
 
-# Introduction
+# swifttdial SMS API Docs
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Customer Support:
+tech@swifttdial.com
+URL: https://swifttdial.com/contact-us/
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+## Usage Overview
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Here are some information that should help you understand the basic usage of our Restful API.
+
+Including info about authenticating users, making requests, responses, potential errors, query parameters and more.
+
+## Headers
+
+Certain API calls require you to send data in a particular format as part of the API call.
+
+| Header        | value sample      | when to apply                                                     |
+| ------------- | ----------------- | ----------------------------------------------------------------- |
+| content-Type  | application /json | must be sent whn passing Data                                     |
+| authorization | x-api-key         | MUST be sent whenever the endpoint requires (Authenticated User). |
+
+## Responses
+
+Unless otherwise specified, all of API endpoints will return the information that you request in the JSON data format.
+
+```
+json
+
+```
+
+Standard Response Format
+
+Delivery Reports
+Below is a description of each delivery report
+
+| Status                 | Description                                                                                                                                                                                                                                                                          |     |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| DeliveredToTerminal    | Delivered to device                                                                                                                                                                                                                                                                  |
+| AbsentSubscriber       | Subscriber has not been able to connect to the network for the last 24 hrs. In some cases (airtel) customers have to lock their phone to 3G only to be able to receive messages. This is an issue specific to them                                                                   |
+|                        |
+| Delivery Impossible    | Number has been ported to another telco or has temporarily been deactivated by SP. Or the number has been inactive for a long period of time. In some cases the telco has blocked delivery due to violation of policy. ie. Sending marketing message beyond 6PM and earlier than 7am |
+| SenderName Blacklisted | The customer has explicitly blocked messages from the sender id. or opted out of receiving promotional messages                                                                                                                                                                      |
+| Invalid Source Address | The sender ID does not exist on the telco                                                                                                                                                                                                                                            |
+
+|Send Bulk Sms|
+Send Bulk Promotional or/and Transaction messages|
 
 # Authentication
 
-> To authorize, use this code:
+| Parameter     | Description                    |     |
+| ------------- | ------------------------------ | --- |
+| AUTHORIZATION | x-api-key                      |
+| HEADERS       | Content-Type: application/json |
+| data          | profile_code :123              |
 
-```ruby
-require 'kittn'
+> https://bulkdev.swifttdial.com:2778
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+# Send Bulk
 
-```python
-import kittn
+POST Send SMS
+`https://bulkdev.swifttdial.com:2778/api/outbox/create \ `
 
-api = kittn.authorize('meowmeowmeow')
-```
+##Send a single message to one or multiple recipients. You can send up to 200 recipients in a single request. This endpoint can send both on demand and bulk messages.
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
+###Requests
 
-```javascript
-const kittn = require('kittn');
+| Parameter           | Description                               |
+| ------------------- | ----------------------------------------- |
+| AUTHORIZATIONS:     | X-api-key                                 |
+| REQUEST BODY SCHEMA | application/json                          |
+| REQUEST BODY:       |
+| profile_code        | linked to sms product configuration       |
+| Messages            | Arry of objects(Messages)[ 1 .. 20] items |
+| dlr_callback_url    | dlr Callback Url                          |
 
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+###Responses
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+curl --request POST \
+  --url https://bulkdev.swifttdial.com:2778/api/outbox/create \
+  --header 'Content-Type: application/json' \
+  --header 'X-API-Key: meowmeowmeow' \
+  --data '{"profile_code": "12345",
+	"messages": [
+		{
+			"recipient": "254712xxxxxx",
+			"message": " HI this is a test",
+			"message_type":1,
+			"req_type": 1,
+			"external_id": "your unique external_id"
+		}
+	],
+	"dlr_callback_url": "http://example.com"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+# Message Status
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+`https://bulkdev.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \`
 
-### HTTP Request
+Check the delivery status of a single/Bulk messages
 
-`GET http://example.com/kittens/<ID>`
+| Parameter       | Description |
+| --------------- | ----------- |
+| AUTHORIZATIONS: | X-api-key   |
 
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+```
+curl --request GET \
+ --url https://bulkdev.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \
+ --header 'X-API-Key: your-api-key'
 ```
 
-```python
-import kittn
+# Subscription Messages
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+### `https://bulkdev.swifttdial.com:2778/api/outbox`
 
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
+| Parameter        | Description                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------------------- |
+| to               | An arraray of phone numbers                                                                  |
+| message          | he message to be sent a single massage is 160 characters                                     |
+| from:            | The short code that will be used to send the message                                         |
+| profile_code     | linked to sms product configuration                                                          |
+| message_id       | A unique reference number that will be sent back to you on the provided delivery endpoint    |
+| dlr_callback_url | The Url that we will send you a delivery report once the message is terminated to the device |
 
-```javascript
-const kittn = require('kittn');
+###Requests
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+| Parameter           | Description      |
+| ------------------- | ---------------- |
+| AUTHORIZATIONS:     | X-api-key        |
+| REQUEST BODY SCHEMA | application/json |
 
-> The above command returns JSON structured like this:
+header 'X-API-Key: your-x-api' \
+ header 'Content-Type: application/json' \
 
 ```json
+
+body
 {
-  "id": 2,
-  "deleted" : ":("
+    "to": ["25472xxxxxxx"],
+    "message": "Your Message",
+    "messageId": "a-eunique-id",
+    "from": "23599",
+    "service": "23599_News_5/sms"
+    "callback": "http://example.com/callback"
+
 }
 ```
 
-This endpoint deletes a specific kitten.
+```shell
+curl --request POST \
+  --url https://bulkdev.swifttdial.com:2778/api/outbox \
+  --header 'Content-Type: application/json' \
+  --header 'X-API-Key: your-x-api' \
+  --data '{
+    "to": ["25472xxxxxxx"],
+    "message": "Your Message",
+    "messageId": "a-eunique-id",
+    "from": "23599",
+    "service": "23599_News_5/sms",
+    "callback": "http://example.com/callback"
 
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+}'
+```
