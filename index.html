@@ -330,6 +330,9 @@
                     <a href="#post" class="toc-h2 toc-link" data-title="POST">POST</a>
                   </li>
                   <li>
+                    <a href="#responses-200-ok" class="toc-h2 toc-link" data-title="Responses 200 ok">Responses <code>200 ok</code></a>
+                  </li>
+                  <li>
                     <a href="#get-dlr" class="toc-h2 toc-link" data-title="GET DLR">GET DLR</a>
                   </li>
                   <li>
@@ -344,7 +347,7 @@
                     <a href="#https-sms-api-swifttdial-com-2778-api-outbox" class="toc-h2 toc-link" data-title="https://sms.api.swifttdial.com:2778/api/outbox"><code>https://sms.api.swifttdial.com:2778/api/outbox</code></a>
                   </li>
                   <li>
-                    <a href="#requests-2" class="toc-h2 toc-link" data-title="Requests">Requests</a>
+                    <a href="#mt-mo-messages" class="toc-h2 toc-link" data-title="MT/MO Messages">MT/MO Messages</a>
                   </li>
               </ul>
           </li>
@@ -460,7 +463,7 @@ Below is a description of each delivery report</p>
 </tr>
 <tr>
 <td>data</td>
-<td>profile_code :123</td>
+<td>profile_code :12356</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -473,9 +476,9 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 <span class="o">{</span><span class="s2">"profile_code"</span>: <span class="s2">"12345"</span>,
     <span class="s2">"messages"</span>: <span class="o">[</span>
         <span class="o">{</span>
-            <span class="s2">"recipient"</span>: <span class="s2">"254780011971"</span>,
+            <span class="s2">"recipient"</span>: <span class="s2">"25472xxxxxxx"</span>,
             <span class="s2">"message"</span>: <span class="s2">" HI this is a Test"</span>,
-            <span class="s2">"message_type"</span>:2,
+            <span class="s2">"message_type"</span>:1,
             <span class="s2">"req_type"</span>: 1,
             <span class="s2">"external_id"</span>: <span class="s2">"tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"</span>
         <span class="o">}</span>
@@ -485,7 +488,24 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 
 </code></pre></div>
 <p><code>POST</code> <code>https://sms.api.swifttdial.com:2778/api/outbox/create \</code></p>
-
+<div class="highlight"><pre class="highlight shell tab-shell"><code>sample codes
+curl <span class="nt">--request</span> POST <span class="se">\</span>
+  <span class="nt">--url</span> https://sms.api.swifttdial.com:2778/api/outbox/create <span class="se">\</span>
+  <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--header</span> <span class="s1">'X-API-Key: meowmeowmeow'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{"profile_code": "12345",
+    "messages": [
+        {
+            "recipient": "254712xxxxxx",
+            "message": " HI this is a test",
+            "message_type":1,
+            "req_type": 1,
+            "external_id": "your unique external_id"
+        }
+    ],
+    "dlr_callback_url": "http://example.com"
+}
+</span></code></pre></div>
 <p>Send a single message to one or multiple recipients. You can send up to 200 recipients in a single request. This endpoint can send both on demand and bulk messages.</p>
 
 <table><thead>
@@ -519,15 +539,14 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 <td>dlr Callback Url</td>
 </tr>
 </tbody></table>
-<h3 id='requests'>Requests</h3>
-<!-- <details>
-  <summary><b><u>Responses ` 200 ok</u></b></summary> -->
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+
+<!-- ###Requests -->
+<h2 id='responses-200-ok'>Responses <code>200 ok</code></h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
 <span class="s2">"external_id"</span>: <span class="s2">"tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"</span>,
 <span class="s2">"recipient"</span>: <span class="s2">"254780011971"</span>,
 <span class="s2">"sms_count"</span>: 1
 <span class="o">}</span>
-</code></pre></div><h3 id='responses-200-ok'>Responses <code>200 ok</code></h3>
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -551,14 +570,45 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 <td>Sms Count.</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>401 Unauthorized
+<span class="o">{</span>
+<span class="s2">"code"</span>: <span class="s2">"description"</span>,
+<span class="o">}</span>
+</code></pre></div>
+<p><code>401 Unauthorized</code></p>
 
-<!-- </details> -->
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code (string):</td>
+<td>Description</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>403 Forbidden
+<span class="o">{</span>
 
-<!-- <details>
-<summary>Intro:</summary>
+<span class="s2">"code"</span>: <span class="s2">"details"</span>,
+<span class="o">}</span>
+</code></pre></div>
+<p><code>403 Forbidden</code></p>
 
-</details> -->
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code (string):</td>
+<td>Description</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>422 unprocesable Entity
+<span class="o">{</span>
   <span class="s2">"detail"</span>: <span class="s2">"Invalid Profile Code"</span>
 <span class="o">}</span>
 </code></pre></div>
@@ -575,7 +625,8 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 <td>Description</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>500 Internal Server Error
+<span class="o">{</span>
   <span class="s2">"detail"</span>: <span class="s2">"500 server-error"</span>,
 <span class="o">}</span>
 </code></pre></div>
@@ -592,23 +643,7 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 <td>description</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://sms.api.swifttdial.com:2778/api/outbox/create <span class="se">\</span>
-  <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  <span class="nt">--header</span> <span class="s1">'X-API-Key: meowmeowmeow'</span> <span class="se">\</span>
-  <span class="nt">--data</span> <span class="s1">'{"profile_code": "12345",
-    "messages": [
-        {
-            "recipient": "254712xxxxxx",
-            "message": " HI this is a test",
-            "message_type":1,
-            "req_type": 1,
-            "external_id": "your unique external_id"
-        }
-    ],
-    "dlr_callback_url": "http://example.com"
-}
-</span></code></pre></div><h2 id='get-dlr'>GET DLR</h2>
+<h2 id='get-dlr'>GET DLR</h2>
 <p>GET MESSAGE DELIVERY</p>
 
 <p><code>GET https://sms.api.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \</code></p>
@@ -641,9 +676,11 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 
 </code></pre></div><h2 id='post-dlr-request'>POST DLR Request</h2>
 <p>Web hook post</p>
-<h3 id='post-https-sms-api-swifttdial-com-2778-api-outbox'><code>POST https://sms.api.swifttdial.com:2778/api/outbox</code></h3><div class="highlight"><pre class="highlight shell tab-shell"><code>Headers Body
-Content-Type: application/json
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>request Body
+<h3 id='post-https-sms-api-swifttdial-com-2778-api-outbox'><code>POST https://sms.api.swifttdial.com:2778/api/outbox</code></h3>
+<p><code>Headers Body</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>request Body
 <span class="o">{</span>
     <span class="s2">"uid"</span>: <span class="s2">"45</span><span class="nv">$045ea8b3abf540aa89cac71985b3a278</span><span class="s2">"</span>,
     <span class="s2">"actor_type"</span>: <span class="s2">"system"</span>,
@@ -707,7 +744,9 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
 <td>The Url that we will send you a delivery report once the message is terminated to the device</td>
 </tr>
 </tbody></table>
-<h3 id='requests-2'>Requests</h3>
+<h2 id='mt-mo-messages'>MT/MO Messages</h2>
+<p>Send a single message to one or multiple recipients</p>
+<h3 id='requests'>Requests</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
