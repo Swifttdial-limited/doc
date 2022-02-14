@@ -25,7 +25,7 @@ meta:
 
 # Usage Overview
 
-swifttdial SMS API Docs
+SwifttDial SMS API Docs
 
 Customer Support:
 tech@swifttdial.com
