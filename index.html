@@ -330,7 +330,7 @@
                     <a href="#post" class="toc-h2 toc-link" data-title="POST">POST</a>
                   </li>
                   <li>
-                    <a href="#responses-200-ok" class="toc-h2 toc-link" data-title="Responses 200 ok">Responses <code>200 ok</code></a>
+                    <a href="#responses-2" class="toc-h2 toc-link" data-title="Responses">Responses</a>
                   </li>
                   <li>
                     <a href="#get-dlr" class="toc-h2 toc-link" data-title="GET DLR">GET DLR</a>
@@ -343,9 +343,6 @@
           <li>
             <a href="#subscription-messages" class="toc-h1 toc-link" data-title="Subscription Messages">Subscription Messages</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#https-sms-api-swifttdial-com-2778-api-outbox" class="toc-h2 toc-link" data-title="https://sms.api.swifttdial.com:2778/api/outbox"><code>https://sms.api.swifttdial.com:2778/api/outbox</code></a>
-                  </li>
                   <li>
                     <a href="#mt-mo-messages" class="toc-h2 toc-link" data-title="MT/MO Messages">MT/MO Messages</a>
                   </li>
@@ -541,7 +538,9 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
 </tbody></table>
 
 <!-- ###Requests -->
-<h2 id='responses-200-ok'>Responses <code>200 ok</code></h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+<h2 id='responses-2'>Responses</h2>
+<p><code>200 ok</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>200 ok <span class="o">{</span>
 <span class="s2">"external_id"</span>: <span class="s2">"tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"</span>,
 <span class="s2">"recipient"</span>: <span class="s2">"254780011971"</span>,
 <span class="s2">"sms_count"</span>: 1
@@ -712,7 +711,9 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
   }
 }'</span> <span class="se">\</span>
 
-</code></pre></div><h1 id='subscription-messages'>Subscription Messages</h1><h3 id='https-sms-api-swifttdial-com-2778-api-outbox'><code>https://sms.api.swifttdial.com:2778/api/outbox</code></h3>
+</code></pre></div><h1 id='subscription-messages'>Subscription Messages</h1>
+<p><code>https://sms.api.swifttdial.com:2778/api/outbox</code></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -763,10 +764,11 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<p>header &#39;X-API-Key: your-x-api&#39; \
- header &#39;Content-Type: application/json&#39; \</p>
+<p><code>header &#39;X-API-Key: your-x-api&#39; \</code></p>
+
+<p><code>header &#39;Content-Type: application/json&#39; \</code></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
-</span><span class="err">body</span><span class="w">
+</span><span class="err">request</span><span class="w"> </span><span class="err">Body</span><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"25472xxxxxxx"</span><span class="p">],</span><span class="w">
     </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Message"</span><span class="p">,</span><span class="w">
@@ -776,7 +778,9 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
     </span><span class="nl">"callback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/callback"</span><span class="w">
 
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>sample code
+
+curl <span class="nt">--request</span> POST <span class="se">\</span>
   <span class="nt">--url</span> https://sms.api.swifttdial.com:2778/api/outbox <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'X-API-Key: your-x-api'</span> <span class="se">\</span>
@@ -788,8 +792,8 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
     "service": "23599_News_5/sms",
     "callback": "http://example.com/callback"
 
-}'</span>
-</code></pre></div><h1 id='errors'>Errors</h1>
+}```
+</span></code></pre></div><h1 id='errors'>Errors</h1>
 <table><thead>
 <tr>
 <th>Error Code</th>
