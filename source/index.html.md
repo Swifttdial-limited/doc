@@ -312,6 +312,8 @@ Send a single message to one or multiple recipients
 | AUTHORIZATIONS:     | X-api-key        |
 | REQUEST BODY SCHEMA | application/json |
 
+`` POST `https://sms.api.swifttdial.com:2778/api/outbox ``
+
 `header 'X-API-Key: your-x-api' \`
 
 `header 'Content-Type: application/json' \`
