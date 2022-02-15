@@ -311,15 +311,18 @@
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#usage-overview" class="toc-h1 toc-link" data-title="Usage Overview">Usage Overview</a>
+          </li>
+          <li>
+            <a href="#headers" class="toc-h1 toc-link" data-title="Headers">Headers</a>
+          </li>
+          <li>
+            <a href="#responses" class="toc-h1 toc-link" data-title="Responses">Responses</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#headers" class="toc-h2 toc-link" data-title="Headers">Headers</a>
-                  </li>
-                  <li>
-                    <a href="#responses" class="toc-h2 toc-link" data-title="Responses">Responses</a>
-                  </li>
-                  <li>
-                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                    <a href="#send-bulk-sms" class="toc-h2 toc-link" data-title="Send Bulk Sms|">Send Bulk Sms|</a>
                   </li>
               </ul>
           </li>
@@ -369,7 +372,7 @@ URL: https://swifttdial.com/contact-us/</p>
 <p>Here are some information that should help you understand the basic usage of our Restful API.</p>
 
 <p>Including info about authenticating users, making requests, responses, potential errors, query parameters and more.</p>
-<h2 id='headers'>Headers</h2>
+<h1 id='headers'>Headers</h1>
 <p>Certain API calls require you to send data in a particular format as part of the API call.</p>
 
 <table><thead>
@@ -390,7 +393,7 @@ URL: https://swifttdial.com/contact-us/</p>
 <td>MUST be sent whenever the endpoint requires (Authenticated User).</td>
 </tr>
 </tbody></table>
-<h2 id='responses'>Responses</h2>
+<h1 id='responses'>Responses</h1>
 <p>Unless otherwise specified, all of API endpoints will return the information that you request in the JSON data format.</p>
 
 <p>Standard Response Format</p>
@@ -436,11 +439,14 @@ Below is a description of each delivery report</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='authentication'>Authentication</h2>
+<h1 id='authentication'>Authentication</h1>
 <p>This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints</p>
 <h3 id='send-bulk-sms'>Send Bulk Sms|</h3>
 <p>Send Bulk Promotional or/and Transaction messages|</p>
-<h4 id='send-a-single-message-to-one-or-multiple-recipients-acquire-api-key-from-dashboard'>Send a single message to one or multiple recipients ** Acquire API KEY FROM DASHBOARD **</h4>
+<h4 id='send-a-single-message-to-one-or-multiple-recipients-acquire-api-key-from-dashboard'>Send a single message to one or multiple recipients ** Acquire API KEY FROM DASHBOARD **</h4><div class="highlight"><pre class="highlight shell tab-shell"><code>https://sms.api.swifttdial.com:2778/api/outbox/create
+header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard'</span> <span class="se">\</span>
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -464,10 +470,7 @@ Below is a description of each delivery report</p>
 <td></td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://sms.api.swifttdial.com:2778
-header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard'</span> <span class="se">\</span>
-</code></pre></div><h1 id='send-bulk'>Send Bulk</h1><h2 id='post'>POST</h2>
+<h1 id='send-bulk'>Send Bulk</h1><h2 id='post'>POST</h2>
 <p>Send SMS</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>Request body
 <span class="o">{</span><span class="s2">"profile_code"</span>: <span class="s2">"12345"</span>,
