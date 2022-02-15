@@ -8,7 +8,7 @@ title: SwifttDial API DOcs
 #   - javascript
 
 toc_footers:
-  - <a href='sms.swifttdial.com'>Login</a>
+  - <a href='https://sms.swifttdial.com'>Login</a>
   # >
 
 includes:
@@ -312,7 +312,7 @@ Send a single message to one or multiple recipients
 | AUTHORIZATIONS:     | X-api-key        |
 | REQUEST BODY SCHEMA | application/json |
 
-`` POST `https://sms.api.swifttdial.com:2778/api/outbox ``
+`POST https://sms.api.swifttdial.com:2778/api/outbox`
 
 `header 'X-API-Key: your-x-api' \`
 
