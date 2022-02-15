@@ -35,7 +35,7 @@ Here are some information that should help you understand the basic usage of our
 
 Including info about authenticating users, making requests, responses, potential errors, query parameters and more.
 
-## Headers
+# Headers
 
 Certain API calls require you to send data in a particular format as part of the API call.
 
@@ -44,7 +44,7 @@ Certain API calls require you to send data in a particular format as part of the
 | content-Type  | application /json | must be sent whn passing Data                                     |
 | authorization | x-api-key         | MUST be sent whenever the endpoint requires (Authenticated User). |
 
-## Responses
+# Responses
 
 Unless otherwise specified, all of API endpoints will return the information that you request in the JSON data format.
 
@@ -62,7 +62,7 @@ Below is a description of each delivery report
 | SenderName Blacklisted | The customer has explicitly blocked messages from the sender id. or opted out of receiving promotional messages                                                                                                                                                                      |
 | Invalid Source Address | The sender ID does not exist on the telco                                                                                                                                                                                                                                            |
 
-## Authentication
+# Authentication
 
 This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints
 
@@ -72,17 +72,17 @@ Send Bulk Promotional or/and Transaction messages|
 
 #### Send a single message to one or multiple recipients ** Acquire API KEY FROM DASHBOARD **
 
+```shell
+https://sms.api.swifttdial.com:2778/api/outbox/create
+header 'Content-Type: application/json' \
+header 'X-API-Key: your-api-key you generate from the dashboard' \
+```
+
 | Parameter     | Description                    |     |
 | ------------- | ------------------------------ | --- |
 | AUTHORIZATION | x-api-key                      |
 | HEADERS       | Content-Type: application/json |
 | data          | profile_code :12356            |
-
-```shell
-https://sms.api.swifttdial.com:2778
-header 'Content-Type: application/json' \
-header 'X-API-Key: your-api-key you generate from the dashboard' \
-```
 
 # Send Bulk
 
