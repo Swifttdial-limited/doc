@@ -443,7 +443,10 @@ Below is a description of each delivery report</p>
 <p>This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints</p>
 <h3 id='send-bulk-sms'>Send Bulk Sms|</h3>
 <p>Send Bulk Promotional or/and Transaction messages|</p>
-<h4 id='send-a-single-message-to-one-or-multiple-recipients-acquire-api-key-from-dashboard'>Send a single message to one or multiple recipients ** Acquire API KEY FROM DASHBOARD **</h4><div class="highlight"><pre class="highlight shell tab-shell"><code>https://bulkdev.swifttdial.com:2778/api/outbox/create
+
+<aside>* Acquire API KEY FROM DASHBOARD **
+</aside> 
+<div class="highlight"><pre class="highlight shell tab-shell"><code>https://bulkdev.swifttdial.com:2778/api/outbox/create
 header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard'</span> <span class="se">\</span>
 </code></pre></div>
@@ -768,7 +771,7 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<p><code>POST https://bulkdev.swifttdial.com:2778/api/outbox/premium</code></p>
+<p><code>POST</code> <code>https://bulkdev.swifttdial.com:2778/api/outbox/premium</code></p>
 
 <p><code>header &#39;X-API-Key: your-x-api&#39; \</code></p>
 
