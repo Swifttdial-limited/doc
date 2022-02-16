@@ -73,7 +73,7 @@ Send Bulk Promotional or/and Transaction messages|
 #### Send a single message to one or multiple recipients ** Acquire API KEY FROM DASHBOARD **
 
 ```shell
-https://sms.api.swifttdial.com:2778/api/outbox/create
+https://bulkdev.swifttdial.com:2778/api/outbox/create
 header 'Content-Type: application/json' \
 header 'X-API-Key: your-api-key you generate from the dashboard' \
 ```
@@ -112,7 +112,7 @@ Request body
 ```shell
 sample codes
 curl --request POST \
-  --url https://sms.api.swifttdial.com:2778/api/outbox/create \
+  --url https://bulkdev.swifttdial.com:2778/api/outbox/create \
   --header 'Content-Type: application/json' \
   --header 'X-API-Key: meowmeowmeow' \
   --data '{"profile_code": "12345",
@@ -217,13 +217,13 @@ Send a single message to one or multiple recipients. You can send up to 200 reci
 
 GET MESSAGE DELIVERY
 
-`GET https://sms.api.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \`
+`GET https://bulkdev.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \`
 
 Check the delivery status of a single/Bulk messages
 
 ```shell
 curl --request GET \
- --url https://sms.api.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \
+ --url https://bulkdev.swifttdial.com:2778/api/outbox/delivery-status/message_ref/ \
  --header 'X-API-Key: your-api-key'
 ```
 
@@ -245,7 +245,7 @@ curl --request GET \
 
 Web hook post
 
-### `POST https://sms.api.swifttdial.com:2778/api/outbox`
+### `POST https://bulkdev.swifttdial.com:2778/api/outbox`
 
 `Headers Body`
 
@@ -270,8 +270,9 @@ request Body
 
 ```shell
 code sample
+
 curl --request POST \
-  --url https://sms.api.swifttdial.com:2779/api/outbox/create \
+  --url https://bulkdev.swifttdial.com:2779/api/outbox/create \
      --header "Content-Type: application/json" \
      --data-binary '{
   "uid": "45$045ea8b3abf540aa89cac71985b3a278",
@@ -291,7 +292,7 @@ curl --request POST \
 
 # Subscription Messages
 
-`https://sms.api.swifttdial.com:2778/api/outbox`
+` POST https://bulkdev.swifttdial.com:2778/api/outbox/premium`
 
 | Parameter        | Description                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------- |
@@ -312,40 +313,46 @@ Send a single message to one or multiple recipients
 | AUTHORIZATIONS:     | X-api-key        |
 | REQUEST BODY SCHEMA | application/json |
 
-`POST https://sms.api.swifttdial.com:2778/api/outbox`
+`POST https://bulkdev.swifttdial.com:2778/api/outbox/premium`
 
 `header 'X-API-Key: your-x-api' \`
 
 `header 'Content-Type: application/json' \`
 
 ```json
-
-request Body
+Request Body:
 {
-    "to": ["25472xxxxxxx"],
-    "message": "Your Message",
-    "messageId": "a-eunique-id",
-    "from": "23599",
-    "service": "23599_News_5/sms"
-    "callback": "http://example.com/callback"
-
-}
+   "profile_code": "22021501",
+   "messages": [
+       {
+           "mobile_number": "254791876624",
+           "message": " HI this is a Test",
+           "message_type":1,
+           "req_type": 1,
+           "external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"
+       }
+   ],
+   "dlr_callback_url": "https://posthere.io/77e1-4095-9dba"
+}'
 ```
 
-````shell
+```shell
 sample code
 
-curl --request POST \
-  --url https://sms.api.swifttdial.com:2778/api/outbox \
-  --header 'Content-Type: application/json' \
-  --header 'X-API-Key: your-x-api' \
-  --data '{
-    "to": ["25472xxxxxxx"],
-    "message": "Your Message",
-    "messageId": "a-eunique-id",
-    "from": "23599",
-    "service": "23599_News_5/sms",
-    "callback": "http://example.com/callback"
-
-}```
-````
+curl --location --request POST 'http://bulkdev.swifttdial.com:2778/api/outbox/premium' \
+--header 'x-api-key: your x-api-key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+   "profile_code": "123456",
+   "messages": [
+       {
+           "mobile_number": "2547xxxxxxxx",
+           "message": " HI this is a Test",
+           "message_type":1,
+           "req_type": 1,
+           "external_id": "tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"
+       }
+   ],
+   "dlr_callback_url": "https://posthere.io/77e1-4095-9dba"
+}'
+```
