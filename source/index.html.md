@@ -70,8 +70,8 @@ This endpoint is used to get an authorization token from the server. The token w
 
 Send Bulk Promotional or/and Transaction messages|
 
-#### Send a single message to one or multiple recipients ** Acquire API KEY FROM DASHBOARD **
-
+<aside>* Acquire API KEY FROM DASHBOARD **
+</aside> 
 ```shell
 https://bulkdev.swifttdial.com:2778/api/outbox/create
 header 'Content-Type: application/json' \
@@ -313,7 +313,7 @@ Send a single message to one or multiple recipients
 | AUTHORIZATIONS:     | X-api-key        |
 | REQUEST BODY SCHEMA | application/json |
 
-`POST https://bulkdev.swifttdial.com:2778/api/outbox/premium`
+`POST` `https://bulkdev.swifttdial.com:2778/api/outbox/premium`
 
 `header 'X-API-Key: your-x-api' \`
 
