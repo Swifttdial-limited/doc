@@ -316,15 +316,7 @@
             <a href="#headers" class="toc-h1 toc-link" data-title="Headers">Headers</a>
           </li>
           <li>
-            <a href="#responses" class="toc-h1 toc-link" data-title="Responses">Responses</a>
-          </li>
-          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#send-bulk-sms" class="toc-h2 toc-link" data-title="Send Bulk Sms|">Send Bulk Sms|</a>
-                  </li>
-              </ul>
           </li>
           <li>
             <a href="#send-bulk" class="toc-h1 toc-link" data-title="Send Bulk">Send Bulk</a>
@@ -333,7 +325,7 @@
                     <a href="#post" class="toc-h2 toc-link" data-title="POST">POST</a>
                   </li>
                   <li>
-                    <a href="#responses-2" class="toc-h2 toc-link" data-title="Responses">Responses</a>
+                    <a href="#responses" class="toc-h2 toc-link" data-title="Responses">Responses</a>
                   </li>
                   <li>
                     <a href="#get-dlr" class="toc-h2 toc-link" data-title="GET DLR">GET DLR</a>
@@ -347,6 +339,9 @@
                     <a href="#mt-mo-messages" class="toc-h2 toc-link" data-title="MT/MO Messages">MT/MO Messages</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#dlr-statuses" class="toc-h1 toc-link" data-title="DLR Statuses">DLR Statuses</a>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -380,66 +375,18 @@ URL: https://swifttdial.com/contact-us/</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>content-Type</td>
+<td>Content-Type</td>
 <td>application /json</td>
 <td>must be sent whn passing Data</td>
 </tr>
 <tr>
-<td>authorization</td>
+<td>Authorization</td>
 <td>x-api-key</td>
 <td>MUST be sent whenever the endpoint requires (Authenticated User).</td>
 </tr>
 </tbody></table>
-<h1 id='responses'>Responses</h1>
-<p>Unless otherwise specified, all of API endpoints will return the information that you request in the JSON data format.</p>
-
-<p>Standard Response Format</p>
-
-<p>Delivery Reports
-Below is a description of each delivery report</p>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Description</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>DeliveredToTerminal</td>
-<td>Delivered to device</td>
-<td></td>
-</tr>
-<tr>
-<td>AbsentSubscriber</td>
-<td>Subscriber has not been able to connect to the network for the last 24 hrs. In some cases (airtel) customers have to lock their phone to 3G only to be able to receive messages. This is an issue specific to them</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Delivery Impossible</td>
-<td>Number has been ported to another telco or has temporarily been deactivated by SP. Or the number has been inactive for a long period of time. In some cases the telco has blocked delivery due to violation of policy. ie. Sending marketing message beyond 6PM and earlier than 7am</td>
-<td></td>
-</tr>
-<tr>
-<td>SenderName Blacklisted</td>
-<td>The customer has explicitly blocked messages from the sender id. or opted out of receiving promotional messages</td>
-<td></td>
-</tr>
-<tr>
-<td>Invalid Source Address</td>
-<td>The sender ID does not exist on the telco</td>
-<td></td>
-</tr>
-</tbody></table>
 <h1 id='authentication'>Authentication</h1>
 <p>This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints</p>
-<h3 id='send-bulk-sms'>Send Bulk Sms|</h3>
-<p>Send Bulk Promotional or/and Transaction messages|</p>
 
 <aside>* Acquire API KEY FROM DASHBOARD **
 </aside> 
@@ -470,7 +417,7 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='send-bulk'>Send Bulk</h1><h2 id='post'>POST</h2>
+<h1 id='send-bulk'>Send Bulk</h1><h3 id='post'>POST</h3>
 <p>Send SMS</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>Request body
 <span class="o">{</span>
@@ -489,7 +436,7 @@ header <span class="s1">'X-API-Key: your-api-key you generate from the dashboard
 
 </code></pre></div>
 <p><code>POST</code> <code>https://bulkdev.swifttdial.com:2778/api/outbox/create \</code></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>sample codes
+<div class="highlight"><pre class="highlight shell tab-shell"><code>
 curl <span class="nt">--request</span> POST <span class="se">\</span>
   <span class="nt">--url</span> https://bulkdev.swifttdial.com:2778/api/outbox/create <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
@@ -543,7 +490,7 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
 </tbody></table>
 
 <!-- ###Requests -->
-<h2 id='responses-2'>Responses</h2>
+<h2 id='responses'>Responses</h2>
 <p><code>200 ok</code></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>200 ok <span class="o">{</span>
 <span class="s2">"external_id"</span>: <span class="s2">"tStriug0Usdecwc4xu12sczeepo99ge45xh0556xordguiyh"</span>,
@@ -818,7 +765,55 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> POST <
    ],
    "dlr_callback_url": "https://posthere.io/77e1-4095-9dba"
 }'</span>
-</code></pre></div><h1 id='errors'>Errors</h1>
+</code></pre></div><h1 id='dlr-statuses'>DLR Statuses</h1>
+<p>(Delivery Report Status)</p>
+
+<p>Unless otherwise specified, all of API endpoints will return the information that you request in the JSON data format.</p>
+
+<p>Standard Response Format</p>
+
+<p>Delivery Reports
+Below is a description of each delivery report</p>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DeliveredToTerminal</td>
+<td>Delivered to device</td>
+<td></td>
+</tr>
+<tr>
+<td>AbsentSubscriber</td>
+<td>Subscriber has not been able to connect to the network for the last 24 hrs. In some cases (airtel) customers have to lock their phone to 3G only to be able to receive messages. This is an issue specific to them</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Delivery Impossible</td>
+<td>Number has been ported to another telco or has temporarily been deactivated by SP. Or the number has been inactive for a long period of time. In some cases the telco has blocked delivery due to violation of policy. ie. Sending marketing message beyond 6PM and earlier than 7am</td>
+<td></td>
+</tr>
+<tr>
+<td>SenderName Blacklisted</td>
+<td>The customer has explicitly blocked messages from the sender id. or opted out of receiving promotional messages</td>
+<td></td>
+</tr>
+<tr>
+<td>Invalid Source Address</td>
+<td>The sender ID does not exist on the telco</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
 <table><thead>
 <tr>
 <th>Error Code</th>
