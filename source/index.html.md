@@ -12,6 +12,7 @@ toc_footers:
   # >
 
 includes:
+  - dlrstatuses
   - errors
 
 search: true
@@ -41,34 +42,12 @@ Certain API calls require you to send data in a particular format as part of the
 
 | Header        | value sample      | when to apply                                                     |
 | ------------- | ----------------- | ----------------------------------------------------------------- |
-| content-Type  | application /json | must be sent whn passing Data                                     |
-| authorization | x-api-key         | MUST be sent whenever the endpoint requires (Authenticated User). |
-
-# Responses
-
-Unless otherwise specified, all of API endpoints will return the information that you request in the JSON data format.
-
-Standard Response Format
-
-Delivery Reports
-Below is a description of each delivery report
-
-| Status                 | Description                                                                                                                                                                                                                                                                          |     |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
-| DeliveredToTerminal    | Delivered to device                                                                                                                                                                                                                                                                  |
-| AbsentSubscriber       | Subscriber has not been able to connect to the network for the last 24 hrs. In some cases (airtel) customers have to lock their phone to 3G only to be able to receive messages. This is an issue specific to them                                                                   |
-|                        |
-| Delivery Impossible    | Number has been ported to another telco or has temporarily been deactivated by SP. Or the number has been inactive for a long period of time. In some cases the telco has blocked delivery due to violation of policy. ie. Sending marketing message beyond 6PM and earlier than 7am |
-| SenderName Blacklisted | The customer has explicitly blocked messages from the sender id. or opted out of receiving promotional messages                                                                                                                                                                      |
-| Invalid Source Address | The sender ID does not exist on the telco                                                                                                                                                                                                                                            |
+| Content-Type  | application /json | must be sent whn passing Data                                     |
+| Authorization | x-api-key         | MUST be sent whenever the endpoint requires (Authenticated User). |
 
 # Authentication
 
 This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints
-
-### Send Bulk Sms|
-
-Send Bulk Promotional or/and Transaction messages|
 
 <aside>* Acquire API KEY FROM DASHBOARD **
 </aside> 
@@ -86,7 +65,7 @@ header 'X-API-Key: your-api-key you generate from the dashboard' \
 
 # Send Bulk
 
-## POST
+### POST
 
 Send SMS
 
@@ -111,7 +90,7 @@ Request body
 `POST` `https://bulkdev.swifttdial.com:2778/api/outbox/create \ `
 
 ```shell
-sample codes
+
 curl --request POST \
   --url https://bulkdev.swifttdial.com:2778/api/outbox/create \
   --header 'Content-Type: application/json' \
