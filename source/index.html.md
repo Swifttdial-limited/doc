@@ -92,7 +92,8 @@ Send SMS
 
 ```shell
 Request body
-{"profile_code": "12345",
+{
+  "profile_code": "12345",
 	"messages": [
 		{
 			"recipient": "25472xxxxxxx",
@@ -115,7 +116,8 @@ curl --request POST \
   --url https://bulkdev.swifttdial.com:2778/api/outbox/create \
   --header 'Content-Type: application/json' \
   --header 'X-API-Key: meowmeowmeow' \
-  --data '{"profile_code": "12345",
+  --data '{
+    "profile_code": "12345",
 	"messages": [
 		{
 			"recipient": "254712xxxxxx",
@@ -339,7 +341,7 @@ Request Body:
 ```shell
 sample code
 
-curl --location --request POST 'http://bulkdev.swifttdial.com:2778/api/outbox/premium' \
+curl --location --request POST 'https://bulkdev.swifttdial.com:2778/api/outbox/premium' \
 --header 'x-api-key: your x-api-key' \
 --header 'Content-Type: application/json' \
 --data-raw '{
