@@ -107,7 +107,7 @@ Request body
 
 ```
 
-`POST` `https://sms.api.swifttdial.com:2778/api/outbox/create \ `
+`POST` `https://bulkdev.swifttdial.com:2778/api/outbox/create \ `
 
 ```shell
 sample codes
