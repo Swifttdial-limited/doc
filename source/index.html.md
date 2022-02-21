@@ -243,6 +243,7 @@ curl --request GET \
 
 ```
 
+<!--
 ## POST DLR Request
 
 Web hook post
@@ -290,7 +291,7 @@ curl --request POST \
   }
 }' \
 
-```
+``` -->
 
 # Subscription Messages
 
