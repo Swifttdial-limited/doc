@@ -338,9 +338,6 @@
                   <li>
                     <a href="#get-dlr" class="toc-h2 toc-link" data-title="GET DLR">GET DLR</a>
                   </li>
-                  <li>
-                    <a href="#post-dlr-request" class="toc-h2 toc-link" data-title="POST DLR Request">POST DLR Request</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -681,32 +678,42 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
 <span class="s2">"detail"</span>: <span class="s2">"Error Message"</span>
 <span class="o">}</span>
 
-</code></pre></div><h2 id='post-dlr-request'>POST DLR Request</h2>
-<p>Web hook post</p>
-<h3 id='post-https-bulkdev-swifttdial-com-2778-api-outbox'><code>POST https://bulkdev.swifttdial.com:2778/api/outbox</code></h3>
-<p><code>Headers Body</code></p>
+</code></pre></div>
+<!--
+## POST DLR Request
 
-<p><code>Content-Type: application/json</code></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>request Body
-<span class="o">{</span>
-    <span class="s2">"uid"</span>: <span class="s2">"45</span><span class="nv">$045ea8b3abf540aa89cac71985b3a278</span><span class="s2">"</span>,
-    <span class="s2">"actor_type"</span>: <span class="s2">"system"</span>,
-    <span class="s2">"event_type"</span>: <span class="s2">"sms_delivery_status"</span>,
-    <span class="s2">"created_at"</span>: <span class="s2">"1594868435"</span>,
-    <span class="s2">"data"</span>: <span class="o">{</span>
-        <span class="s2">"external_id"</span>: <span class="s2">"abf540aa89cac71985b3a278"</span>,
-        <span class="s2">"message_ref"</span>: <span class="s2">"76387871a0bd4f44afcbf3af8fb53054"</span>,
-        <span class="s2">"status"</span>: <span class="s2">"delivered"</span>,
-        <span class="s2">"status_reason"</span>: <span class="s2">"delivered_to_terminal"</span>,
-        <span class="s2">"status_description"</span>: <span class="s2">"Message Delivered to terminal"</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>code sample
+Web hook post
 
-curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://bulkdev.swifttdial.com:2779/api/outbox/create <span class="se">\</span>
-     <span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">--data-binary</span> <span class="s1">'{
+### `POST https://bulkdev.swifttdial.com:2778/api/outbox`
+
+`Headers Body`
+
+`Content-Type: application/json`
+
+```shell
+request Body
+{
+    "uid": "45$045ea8b3abf540aa89cac71985b3a278",
+    "actor_type": "system",
+    "event_type": "sms_delivery_status",
+    "created_at": "1594868435",
+    "data": {
+        "external_id": "abf540aa89cac71985b3a278",
+        "message_ref": "76387871a0bd4f44afcbf3af8fb53054",
+        "status": "delivered",
+        "status_reason": "delivered_to_terminal",
+        "status_description": "Message Delivered to terminal"
+    }
+}
+```
+
+```shell
+code sample
+
+curl --request POST \
+  --url https://bulkdev.swifttdial.com:2779/api/outbox/create \
+     --header "Content-Type: application/json" \
+     --data-binary '{
   "uid": "45$045ea8b3abf540aa89cac71985b3a278",
   "actor_type": "system",
   "event_type": "sms_delivery_status",
@@ -718,9 +725,10 @@ curl <span class="nt">--request</span> POST <span class="se">\</span>
     "status_reason": "delivered_to_terminal",
     "status_description": "Message Delivered to client Mobile"
   }
-}'</span> <span class="se">\</span>
+}' \
 
-</code></pre></div><h1 id='subscription-messages'>Subscription Messages</h1>
+``` -->
+<h1 id='subscription-messages'>Subscription Messages</h1>
 <p><code>POST https://bulkdev.swifttdial.com:2778/api/outbox/premium</code></p>
 
 <table><thead>
